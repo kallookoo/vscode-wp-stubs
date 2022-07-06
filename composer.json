@@ -1,0 +1,16 @@
+{
+	"name": "kallookoo/wordpress-wp-stubs",
+	"description": "WordPress stubs for use in Visual Studio Code",
+	"homepage": "https://github.com/kallookoo/wordpress-wp-stubs",
+	"license": "MIT",
+	"require": {
+		"php-stubs/wp-cli-stubs": "dev-master",
+		"php-stubs/wordpress-globals": ">=0.2",
+		"php-stubs/wordpress-stubs": ">=6.0",
+		"php-stubs/woocommerce-stubs": ">=6.0"
+    },
+	"scripts": {
+		"make-stubs": [ "@php make-stubs.php" ],
+		"post-update-cmd": [ "@make-stubs" ]
+	}
+}

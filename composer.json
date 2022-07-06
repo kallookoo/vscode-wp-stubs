@@ -3,6 +3,8 @@
 	"description": "WordPress stubs for use in Visual Studio Code",
 	"homepage": "https://github.com/kallookoo/vscode-wp-stubs",
 	"license": "MIT",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"require": {
 		"php-stubs/wp-cli-stubs": "dev-master",
 		"php-stubs/wordpress-globals": ">=0.2",

@@ -1,13 +1,13 @@
 {
 	"name": "kallookoo/vscode-wp-stubs",
-	"description": "WordPress stubs for use in Visual Studio Code",
+	"description": "WordPress and WooCommerce stubs for PHP intelephense ( Visual Studio Code )",
 	"homepage": "https://github.com/kallookoo/vscode-wp-stubs",
 	"license": "MIT",
-	"require": {
-		"php-stubs/wp-cli-stubs": "dev-master",
+	"require-dev": {
 		"php-stubs/wordpress-globals": ">=0.2",
 		"php-stubs/wordpress-stubs": ">=6.0",
-		"php-stubs/woocommerce-stubs": ">=6.0"
+		"php-stubs/woocommerce-stubs": ">=6.0",
+		"php-stubs/wp-cli-stubs": ">=2.7"
     },
 	"scripts": {
 		"make-stubs": [ "@php make-stubs.php" ],

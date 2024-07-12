@@ -1,0 +1,6 @@
+{
+    "phpCodeSniffer.exclude": [
+        "**/vendor/**",
+        "**/stubs/**"
+    ],
+}

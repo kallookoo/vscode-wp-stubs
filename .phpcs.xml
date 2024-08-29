@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <ruleset name="Current project">
-  <rule ref="/Users/sergio/Documents/ruleset.xml">
-    <exclude name="WordPress.PHP.DiscouragedPHPFunctions"/>
+	<!-- Configure the PHP Compatibility WP version. -->
+	<config name="testVersion" value="8.0-"/>
+  <rule ref="WooCommerce-Excl">
+		<exclude name="WooCommerce.Commenting.CommentTags"/>
+    <exclude name="WordPress.PHP.DevelopmentFunctions"/>
+    <exclude name="WordPress.Security"/>
     <exclude name="WordPress.WP.AlternativeFunctions"/>
+    <exclude name="WordPress.WP.GlobalVariablesOverride"/>
+    <exclude name="WordPress.PHP.DiscouragedPHPFunctions"/>
   </rule>
-  <exclude-pattern>*/stubs/*</exclude-pattern>
 </ruleset>

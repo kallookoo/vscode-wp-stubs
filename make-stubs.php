@@ -11,25 +11,18 @@
  * @param string[] $stubs The stubs.
  */
 function add_stubs_to_vscode_intelephense( $stubs ) {
-	$home = '~';
 	if ( 0 === strncasecmp( PHP_OS, 'WIN', 3 ) ) {
-		$home = '%userprofile%';
+		$home = exec( 'echo %USERPROFILE%' );
+	} else {
+		$home = exec( 'echo ~' );
 	}
-	$home = exec( "echo {$home}" );
 
 	if ( $home && is_dir( "{$home}/.vscode/extensions" ) ) {
-		$extensions = scandir( "{$home}/.vscode/extensions" );
-		$extensions = array_filter(
-			(array) $extensions,
-			function ( $directory ) {
-				return ( 0 === strncmp( $directory, 'bmewburn.vscode-intelephense-client', 35 ) );
-			}
-		);
-		foreach ( $extensions as $extension ) {
-			$wp = "{$home}/.vscode/extensions/{$extension}/node_modules/intelephense/lib/stub/wordpress";
-			if ( is_dir( $wp ) ) {
+		foreach ( scandir( "{$home}/.vscode/extensions", SCANDIR_SORT_NONE ) as $extension ) {
+			$directory = "{$home}/.vscode/extensions/{$extension}/node_modules/intelephense/lib/stub/wordpress";
+			if ( ! in_array( $extension, array( '.', '..' ), true ) && is_dir( $directory ) ) {
 				foreach ( $stubs as $basename => $filename ) {
-					copy( $filename, "{$wp}/{$basename}.php" );
+					copy( $filename, "{$directory}/{$basename}.php" );
 				}
 			}
 		}
@@ -54,8 +47,7 @@ if ( ! is_dir( $directory ) ) {
 $stubs = array();
 foreach ( $packages as $basename => $package_dir ) {
 	$filename = __DIR__ . "/vendor/{$package_dir}/{$basename}.php";
-	if ( is_readable( $filename ) ) {
-		copy( $filename, "{$directory}/{$basename}.php" );
+	if ( is_readable( $filename ) && copy( $filename, "{$directory}/{$basename}.php" ) ) {
 		$stubs[ $basename ] = $filename;
 	}
 }
